@@ -152,12 +152,10 @@ public class MovieReviewSystemTest {
         reviewService.addReview("shahrukh123@hotmail.com", "Newton", 7);
         reviewService.addReview("shahrukh123@hotmail.com", "LunchBox", 8);
 
-        List<MovieReview> res = reviewService.getTopRatedMoviesByCriticInAGenre("Drama", 5);
+        List<String> res = reviewService.getTopRatedMoviesByCriticInAGenre("Drama", 5);
         Assert.assertEquals(2, res.size());
-        Assert.assertEquals("Newton", res.get(0).getMovie().getTitle());
-        Assert.assertEquals(26, res.get(0).getRating());
-        Assert.assertEquals("LunchBox", res.get(1).getMovie().getTitle());
-        Assert.assertEquals(30, res.get(1).getRating());
+        Assert.assertEquals("Newton", res.get(0));
+        Assert.assertEquals("LunchBox", res.get(1));
     }
 
     private void prepareTestData() {

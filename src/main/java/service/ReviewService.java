@@ -13,6 +13,7 @@ import main.java.model.MovieReview;
 import main.java.util.ValidationUtil;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class ReviewService {
@@ -104,7 +105,7 @@ public class ReviewService {
         return res;
     }
 
-    public List<MovieReview> getTopRatedMoviesByCriticInAGenre(String genre, int n) {
+    private List<MovieReview> getTopRatedMoviesAndReviewsByCriticInAGenre(String genre, int n) {
         Genre parsedGenre = ValidationUtil.parseEnum(Genre.class, genre);
         PriorityQueue<MovieReview> pQ = new PriorityQueue(n, MovieReview.getComparator());
         Map<Movie, Integer> movieReviewMap = new HashMap<>();
@@ -133,5 +134,9 @@ public class ReviewService {
         return res;
     }
 
+    public List<String> getTopRatedMoviesByCriticInAGenre(String genre, int n) {
+        List<MovieReview> movieReviews = getTopRatedMoviesAndReviewsByCriticInAGenre(genre, n);
+        return movieReviews.stream().map(movieReview -> movieReview.getMovie().getTitle()).collect(Collectors.toList());
+    }
 
 }
