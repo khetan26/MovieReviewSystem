@@ -154,8 +154,8 @@ public class MovieReviewSystemTest {
 
         List<String> res = reviewService.getTopRatedMoviesByCriticInAGenre("Drama", 5);
         Assert.assertEquals(2, res.size());
-        Assert.assertEquals("Newton", res.get(0));
-        Assert.assertEquals("LunchBox", res.get(1));
+        Assert.assertEquals("LunchBox", res.get(0));
+        Assert.assertEquals("Newton", res.get(1));
     }
 
     private void prepareTestData() {
